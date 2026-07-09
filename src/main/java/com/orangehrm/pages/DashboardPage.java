@@ -3,10 +3,13 @@ package com.orangehrm.pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
+import com.orangehrm.utilities.WaitUtility;
+
 public class DashboardPage {
 
     WebDriver driver;
-
+    WaitUtility wait;
+    
     // Locators
     By lblDashboard = By.xpath("//h6[text()='Dashboard']");
     By imgProfile = By.className("oxd-userdropdown-img");
@@ -15,21 +18,28 @@ public class DashboardPage {
     // Constructor
     public DashboardPage(WebDriver driver) {
         this.driver = driver;
+        wait = new WaitUtility(driver);
     }
 
     // Verify Dashboard
     public boolean isDashboardDisplayed() {
-        return driver.findElement(lblDashboard).isDisplayed();
+
+        return wait.waitForElement(lblDashboard).isDisplayed();
+
     }
 
     // Click Profile
     public void clickProfile() {
-        driver.findElement(imgProfile).click();
+
+        wait.waitForClickable(imgProfile).click();
+
     }
 
     // Click Logout
     public void clickLogout() {
-        driver.findElement(lnkLogout).click();
+
+        wait.waitForClickable(lnkLogout).click();
+
     }
 
     // Complete Logout
