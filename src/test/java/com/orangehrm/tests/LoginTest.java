@@ -4,12 +4,14 @@ import org.testng.annotations.DataProvider;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import org.testng.annotations.Listeners;
 import com.orangehrm.base.BaseTest;
 import com.orangehrm.pages.DashboardPage;
 import com.orangehrm.pages.LoginPage;
 import com.orangehrm.utilities.ConfigReader;
 import com.orangehrm.utilities.ExcelUtility;
 
+@Listeners(com.orangehrm.listeners.TestListener.class)
 public class LoginTest extends BaseTest {
 	@DataProvider(name = "loginData")
 
