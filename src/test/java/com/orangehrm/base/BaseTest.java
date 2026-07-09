@@ -20,6 +20,7 @@ public class BaseTest {
     	WebDriverManager.chromedriver().setup();
     	ChromeOptions options = new ChromeOptions();
     	options.addArguments("--incognito");
+    	options.addArguments("--lang=en-US");
 
     	driver = new ChromeDriver(options);
 
