@@ -11,7 +11,6 @@ import com.orangehrm.pages.LoginPage;
 import com.orangehrm.utilities.ConfigReader;
 import com.orangehrm.utilities.ExcelUtility;
 
-@Listeners(com.orangehrm.listeners.TestListener.class)
 public class LoginTest extends BaseTest {
 	@DataProvider(name = "loginData")
 
@@ -81,7 +80,7 @@ public class LoginTest extends BaseTest {
 
 		else {
 
-			Assert.assertEquals(loginPage.getErrorMessage(), "Invalid credential");
+			Assert.assertEquals(loginPage.getErrorMessage(), "Invalid credentials");
 
 		}
 	}
