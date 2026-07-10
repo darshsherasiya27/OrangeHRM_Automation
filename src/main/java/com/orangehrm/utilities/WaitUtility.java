@@ -32,5 +32,13 @@ public class WaitUtility {
         return wait.until(ExpectedConditions.elementToBeClickable(locator));
 
     }
+    public void waitForLoaderToDisappear() {
+
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+
+        wait.until(ExpectedConditions.invisibilityOfElementLocated(
+                By.className("oxd-form-loader")));
+
+    }
 
 }
