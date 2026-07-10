@@ -30,4 +30,19 @@ public class PIMTest extends BaseTest {
 
 	    assertTrue(pimPage.isPersonalDetailsPageDisplayed());	
 	    }
+	@Test
+	public void verifyDeleteEmployee() throws InterruptedException {
+
+	    LoginPage loginPage = new LoginPage(driver);
+	    PIMPage pimPage = new PIMPage(driver);
+
+	    loginPage.login("Admin", "admin123");
+
+	    pimPage.deleteEmployee("TestDelete");
+	    
+	    pimPage.searchEmployee("TestDelete");
+
+	    assertTrue(pimPage.isNoRecordDisplayed());
+
+	}
 }

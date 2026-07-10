@@ -4,6 +4,7 @@ import java.time.Duration;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -38,6 +39,14 @@ public class PIMPage {
     // Search Button
     By btnSearch = By.xpath("//button[normalize-space()='Search']");
     By suggestion = By.xpath("//div[@role='listbox']//span");
+    
+    By btnDelete = By.xpath("//i[@class='oxd-icon bi-trash']/parent::button");
+
+    By btnYesDelete = By.xpath("//button[normalize-space()='Yes, Delete']");
+    
+    By noRecordMessage = By.xpath("//span[normalize-space()='No Records Found']");
+    
+    
     public PIMPage(WebDriver driver) {
         this.driver = driver;
         wait = new WaitUtility(driver);
@@ -90,16 +99,22 @@ public class PIMPage {
 
     public void searchEmployee(String employeeName) throws InterruptedException {
 
-        wait.waitForElement(txtEmployeeName).clear();
+        wait.waitForElement(txtEmployeeName).click();
+
+        wait.waitForElement(txtEmployeeName).sendKeys(Keys.CONTROL + "a");
+        wait.waitForElement(txtEmployeeName).sendKeys(Keys.DELETE);
 
         wait.waitForElement(txtEmployeeName).sendKeys(employeeName);
 
         Thread.sleep(2000);
 
-        wait.waitForClickable(suggestion).click();
+//        try {
+//            wait.waitForClickable(suggestion).click();
+//        } catch (Exception e) {
+//            System.out.println("Suggestion not found");
+//        }
 
         wait.waitForClickable(btnSearch).click();
-
     }
     public boolean isEmployeeDisplayed(String employeeName) {
 
@@ -128,6 +143,35 @@ public class PIMPage {
         clickSave();
 
         wait.waitForLoaderToDisappear();
+    }
+    
+    public void clickDelete() {
+
+        wait.waitForClickable(btnDelete).click();
+
+    }
+
+    public void confirmDelete() {
+
+        wait.waitForClickable(btnYesDelete).click();
+
+    }
+    public boolean isNoRecordDisplayed() {
+
+        return wait.waitForElement(noRecordMessage).isDisplayed();
+
+    }
+    public void deleteEmployee(String employeeName) throws InterruptedException {
+    	clickPIM();
+    	
+        clickEmployeeList();
+
+        searchEmployee(employeeName);
+
+        clickDelete();
+
+        confirmDelete();
+
     }
 
 }
