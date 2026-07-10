@@ -44,7 +44,9 @@ public class DashboardPage {
 
     // Complete Logout
     public void logout() {
-        clickProfile();
-        clickLogout();
+
+        wait.waitForClickable(imgProfile).click();
+
+        wait.waitForClickable(lnkLogout).click();
     }
 }
