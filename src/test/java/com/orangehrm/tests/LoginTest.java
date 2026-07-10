@@ -81,7 +81,7 @@ public class LoginTest extends BaseTest {
 
 		else {
 
-			Assert.assertEquals(loginPage.getErrorMessage(), "Invalid credentials");
+			Assert.assertEquals(loginPage.getErrorMessage(), "Invalid credential");
 
 		}
 	}
