@@ -1,10 +1,9 @@
 package com.orangehrm.tests;
 
-import org.testng.annotations.DataProvider;
 import org.testng.Assert;
+import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-import org.testng.annotations.Listeners;
 import com.orangehrm.base.BaseTest;
 import com.orangehrm.pages.DashboardPage;
 import com.orangehrm.pages.LoginPage;
@@ -69,7 +68,7 @@ public class LoginTest extends BaseTest {
 		DashboardPage dashboardPage = new DashboardPage(driver);
 
 		loginPage.login(username, password);
-		
+
 		if (expected.equalsIgnoreCase("Pass")) {
 
 			Assert.assertTrue(dashboardPage.isDashboardDisplayed());

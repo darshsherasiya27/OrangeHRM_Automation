@@ -10,18 +10,18 @@ import com.orangehrm.pages.LoginPage;
 
 public class LogoutTest extends BaseTest {
 
-    @Test
-    public void verifyLogout() {
+	@Test
+	public void verifyLogout() {
 
-        LoginPage login = new LoginPage(driver);
-        DashboardPage dashboard = new DashboardPage(driver);
+		LoginPage login = new LoginPage(driver);
+		DashboardPage dashboard = new DashboardPage(driver);
 
-        login.login("Admin", "admin123");
+		login.login("Admin", "admin123");
 
-        dashboard.logout();
+		dashboard.logout();
 
-        assertTrue(driver.getCurrentUrl().contains("login"));
+		assertTrue(driver.getCurrentUrl().contains("login"));
 
-    }
+	}
 
 }

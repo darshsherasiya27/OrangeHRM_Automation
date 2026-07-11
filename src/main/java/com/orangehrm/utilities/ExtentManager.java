@@ -5,25 +5,24 @@ import com.aventstack.extentreports.reporter.ExtentSparkReporter;
 
 public class ExtentManager {
 
-    private static ExtentReports extent;
+	private static ExtentReports extent;
 
-    public static ExtentReports getReport() {
+	public static ExtentReports getReport() {
 
-        if (extent == null) {
+		if (extent == null) {
 
-            ExtentSparkReporter spark =
-                    new ExtentSparkReporter("test-output/ExtentReport.html");
+			ExtentSparkReporter spark = new ExtentSparkReporter("test-output/ExtentReport.html");
 
-            extent = new ExtentReports();
+			extent = new ExtentReports();
 
-            extent.attachReporter(spark);
+			extent.attachReporter(spark);
 
-            extent.setSystemInfo("Tester", "Darsh Sherasiya");
-            extent.setSystemInfo("Project", "OrangeHRM Automation");
+			extent.setSystemInfo("Tester", "Darsh Sherasiya");
+			extent.setSystemInfo("Project", "OrangeHRM Automation");
 
-        }
+		}
 
-        return extent;
-    }
+		return extent;
+	}
 
 }

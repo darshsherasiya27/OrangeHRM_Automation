@@ -10,35 +10,35 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class WaitUtility {
 
-    WebDriver driver;
-    WebDriverWait wait;
+	WebDriver driver;
+	WebDriverWait wait;
 
-    public WaitUtility(WebDriver driver) {
+	public WaitUtility(WebDriver driver) {
 
-        this.driver = driver;
+		this.driver = driver;
 
-        wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 
-    }
+	}
 
-    public WebElement waitForElement(By locator) {
+	public WebElement waitForElement(By locator) {
 
-        return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
+		return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
 
-    }
+	}
 
-    public WebElement waitForClickable(By locator) {
+	public WebElement waitForClickable(By locator) {
 
-        return wait.until(ExpectedConditions.elementToBeClickable(locator));
+		return wait.until(ExpectedConditions.elementToBeClickable(locator));
 
-    }
-    public void waitForLoaderToDisappear() {
+	}
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+	public void waitForLoaderToDisappear() {
 
-        wait.until(ExpectedConditions.invisibilityOfElementLocated(
-                By.className("oxd-form-loader")));
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
 
-    }
+		wait.until(ExpectedConditions.invisibilityOfElementLocated(By.className("oxd-form-loader")));
+
+	}
 
 }

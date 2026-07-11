@@ -10,22 +10,22 @@ import com.orangehrm.pages.MyInfoPage;
 
 public class MyInfoTest extends BaseTest {
 
-    @Test
-    public void verifyUpdatePersonalDetails() throws InterruptedException {
+	@Test
+	public void verifyUpdatePersonalDetails() throws InterruptedException {
 
-        LoginPage loginPage = new LoginPage(driver);
-        MyInfoPage myInfoPage = new MyInfoPage(driver);
+		LoginPage loginPage = new LoginPage(driver);
+		MyInfoPage myInfoPage = new MyInfoPage(driver);
 
-        loginPage.login("Admin", "admin123");
+		loginPage.login("Admin", "admin123");
 
-        myInfoPage.clickMyInfo();
+		myInfoPage.clickMyInfo();
 
-        String otherId = "QA" + System.currentTimeMillis();
+		String otherId = "QA" + System.currentTimeMillis();
 
-        myInfoPage.updateOtherId(otherId);
+		myInfoPage.updateOtherId(otherId);
 
-        myInfoPage.clickSave();
-        Thread.sleep(1000);
-        assertTrue(myInfoPage.isUpdateSuccessful());
-    }
+		myInfoPage.clickSave();
+		Thread.sleep(1000);
+		assertTrue(myInfoPage.isUpdateSuccessful());
+	}
 }

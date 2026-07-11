@@ -7,46 +7,46 @@ import com.orangehrm.utilities.WaitUtility;
 
 public class DashboardPage {
 
-    WebDriver driver;
-    WaitUtility wait;
-    
-    // Locators
-    By lblDashboard = By.xpath("//h6[text()='Dashboard']");
-    By imgProfile = By.className("oxd-userdropdown-img");
-    By lnkLogout = By.linkText("Logout");
+	WebDriver driver;
+	WaitUtility wait;
 
-    // Constructor
-    public DashboardPage(WebDriver driver) {
-        this.driver = driver;
-        wait = new WaitUtility(driver);
-    }
+	// Locators
+	By lblDashboard = By.xpath("//h6[text()='Dashboard']");
+	By imgProfile = By.className("oxd-userdropdown-img");
+	By lnkLogout = By.linkText("Logout");
 
-    // Verify Dashboard
-    public boolean isDashboardDisplayed() {
+	// Constructor
+	public DashboardPage(WebDriver driver) {
+		this.driver = driver;
+		wait = new WaitUtility(driver);
+	}
 
-        return wait.waitForElement(lblDashboard).isDisplayed();
+	// Verify Dashboard
+	public boolean isDashboardDisplayed() {
 
-    }
+		return wait.waitForElement(lblDashboard).isDisplayed();
 
-    // Click Profile
-    public void clickProfile() {
+	}
 
-        wait.waitForClickable(imgProfile).click();
+	// Click Profile
+	public void clickProfile() {
 
-    }
+		wait.waitForClickable(imgProfile).click();
 
-    // Click Logout
-    public void clickLogout() {
+	}
 
-        wait.waitForClickable(lnkLogout).click();
+	// Click Logout
+	public void clickLogout() {
 
-    }
+		wait.waitForClickable(lnkLogout).click();
 
-    // Complete Logout
-    public void logout() {
+	}
 
-        wait.waitForClickable(imgProfile).click();
+	// Complete Logout
+	public void logout() {
 
-        wait.waitForClickable(lnkLogout).click();
-    }
+		wait.waitForClickable(imgProfile).click();
+
+		wait.waitForClickable(lnkLogout).click();
+	}
 }

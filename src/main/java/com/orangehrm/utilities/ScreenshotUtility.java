@@ -12,24 +12,24 @@ import org.openqa.selenium.WebDriver;
 
 public class ScreenshotUtility {
 
-    public static void captureScreenshot(WebDriver driver, String testName) {
+	public static void captureScreenshot(WebDriver driver, String testName) {
 
-        File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+		File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 
-        String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+		String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
 
-        File dest = new File("Screenshots/" + testName + "_" + timeStamp + ".png");
+		File dest = new File("Screenshots/" + testName + "_" + timeStamp + ".png");
 
-        try {
+		try {
 
-            FileUtils.copyFile(src, dest);
+			FileUtils.copyFile(src, dest);
 
-        } catch (IOException e) {
+		} catch (IOException e) {
 
-            e.printStackTrace();
+			e.printStackTrace();
 
-        }
+		}
 
-    }
+	}
 
 }

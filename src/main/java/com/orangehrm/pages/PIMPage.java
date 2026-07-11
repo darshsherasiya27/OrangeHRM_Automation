@@ -15,8 +15,8 @@ import com.orangehrm.utilities.WaitUtility;
 public class PIMPage {
 
     WebDriver driver;
-    WaitUtility wait;
- // PIM Menu
+	WaitUtility wait;
+	 // PIM Menu
     By menuPIM = By.linkText("PIM");
 
     // Add Button
