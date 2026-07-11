@@ -9,6 +9,7 @@ import com.orangehrm.utilities.WaitUtility;
 public class MyInfoPage {
 
 	WebDriver driver;
+
 	WaitUtility wait;
 
 	public MyInfoPage(WebDriver driver) {

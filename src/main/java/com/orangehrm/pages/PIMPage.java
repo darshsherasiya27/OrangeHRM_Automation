@@ -14,103 +14,103 @@ import com.orangehrm.utilities.WaitUtility;
 
 public class PIMPage {
 
-    WebDriver driver;
+	WebDriver driver;
 	WaitUtility wait;
-	 // PIM Menu
-    By menuPIM = By.linkText("PIM");
+	// PIM Menu
+	By menuPIM = By.linkText("PIM");
 
-    // Add Button
-    By btnAdd = By.xpath("//button[normalize-space()='Add']");
+	// Add Button
+	By btnAdd = By.xpath("//button[normalize-space()='Add']");
 
-    // First Name
-    By txtFirstName = By.name("firstName");
+	// First Name
+	By txtFirstName = By.name("firstName");
 
-    // Last Name
-    By txtLastName = By.name("lastName");
+	// Last Name
+	By txtLastName = By.name("lastName");
 
-    // Save Button
-    By btnSave = By.xpath("//button[@type='submit']");
- // Employee List Menu
-    By menuEmployeeList = By.linkText("Employee List");
+	// Save Button
+	By btnSave = By.xpath("//button[@type='submit']");
+	// Employee List Menu
+	By menuEmployeeList = By.linkText("Employee List");
 
-    // Employee Name
-    By txtEmployeeName = By.xpath("//input[@placeholder='Type for hints...']");
+	// Employee Name
+	By txtEmployeeName = By.xpath("//input[@placeholder='Type for hints...']");
 
-    // Search Button
-    By btnSearch = By.xpath("//button[normalize-space()='Search']");
-    By suggestion = By.xpath("//div[@role='listbox']//span");
-    
-    By btnDelete = By.xpath("//i[@class='oxd-icon bi-trash']/parent::button");
+	// Search Button
+	By btnSearch = By.xpath("//button[normalize-space()='Search']");
+	By suggestion = By.xpath("//div[@role='listbox']//span");
 
-    By btnYesDelete = By.xpath("//button[normalize-space()='Yes, Delete']");
-    
-    By noRecordMessage = By.xpath("//span[normalize-space()='No Records Found']");
-    
- // Edit Button
-    By btnEdit = By.xpath("//i[contains(@class,'bi-pencil-fill')]/parent::button");
+	By btnDelete = By.xpath("//i[@class='oxd-icon bi-trash']/parent::button");
 
-    By successToast = By.xpath("//p[text()='Successfully Updated']");
-    
-    public PIMPage(WebDriver driver) {
-        this.driver = driver;
-        wait = new WaitUtility(driver);
-    }
-    
-    public void clickPIM() {
+	By btnYesDelete = By.xpath("//button[normalize-space()='Yes, Delete']");
 
-        wait.waitForClickable(menuPIM).click();
+	By noRecordMessage = By.xpath("//span[normalize-space()='No Records Found']");
 
-    }
+	// Edit Button
+	By btnEdit = By.xpath("//i[contains(@class,'bi-pencil-fill')]/parent::button");
 
-    public void clickAdd() {
+	By successToast = By.xpath("//p[text()='Successfully Updated']");
 
-        wait.waitForClickable(btnAdd).click();
+	public PIMPage(WebDriver driver) {
+		this.driver = driver;
+		wait = new WaitUtility(driver);
+	}
 
-    }
+	public void clickPIM() {
 
-    public void enterFirstName(String firstName) {
+		wait.waitForClickable(menuPIM).click();
 
-        wait.waitForElement(txtFirstName).sendKeys(firstName);
+	}
 
-    }
+	public void clickAdd() {
 
-    public void enterLastName(String lastName) {
+		wait.waitForClickable(btnAdd).click();
 
-        wait.waitForElement(txtLastName).sendKeys(lastName);
+	}
 
-    }
+	public void enterFirstName(String firstName) {
 
-    public void clickSave() {
+		wait.waitForElement(txtFirstName).sendKeys(firstName);
 
-        wait.waitForLoaderToDisappear();
+	}
 
-        WebElement saveButton = wait.waitForClickable(btnSave);
+	public void enterLastName(String lastName) {
 
-        try {
-            saveButton.click();
-        } catch (Exception e) {
-            ((JavascriptExecutor) driver)
-                    .executeScript("arguments[0].click();", saveButton);
-        }
+		wait.waitForElement(txtLastName).sendKeys(lastName);
 
-        wait.waitForLoaderToDisappear();
-    }
-    public void clickEmployeeList() {
+	}
 
-        wait.waitForClickable(menuEmployeeList).click();
+	public void clickSave() {
 
-    }
+		wait.waitForLoaderToDisappear();
 
-    public void searchEmployee(String employeeName) throws InterruptedException {
+		WebElement saveButton = wait.waitForClickable(btnSave);
 
-        wait.waitForElement(txtEmployeeName).click();
+		try {
+			saveButton.click();
+		} catch (Exception e) {
+			((JavascriptExecutor) driver).executeScript("arguments[0].click();", saveButton);
+		}
 
-        wait.waitForElement(txtEmployeeName).sendKeys(Keys.CONTROL + "a");
-        wait.waitForElement(txtEmployeeName).sendKeys(Keys.DELETE);
+		wait.waitForLoaderToDisappear();
+	}
 
-        wait.waitForElement(txtEmployeeName).sendKeys(employeeName);
+	public void clickEmployeeList() {
 
-        Thread.sleep(2000);
+		wait.waitForClickable(menuEmployeeList).click();
+
+	}
+
+	public void searchEmployee(String employeeName) throws InterruptedException {
+
+		wait.waitForElement(txtEmployeeName).click();
+
+		wait.waitForElement(txtEmployeeName).sendKeys(Keys.CONTROL + "a");
+		wait.waitForElement(txtEmployeeName).sendKeys(Keys.DELETE);
+
+		wait.waitForElement(txtEmployeeName).sendKeys(employeeName);
+
+		Thread.sleep(2000);
 
 //        try {
 //            wait.waitForClickable(suggestion).click();
@@ -118,97 +118,105 @@ public class PIMPage {
 //            System.out.println("Suggestion not found");
 //        }
 
-        wait.waitForClickable(btnSearch).click();
-    }
-    public boolean isEmployeeDisplayed(String employeeName) {
+		wait.waitForClickable(btnSearch).click();
+	}
 
-        By employee = By.xpath("//*[contains(text(),'" + employeeName + "')]");
+	public boolean isEmployeeDisplayed(String employeeName) {
 
-        return wait.waitForElement(employee).isDisplayed();
+		By employee = By.xpath("//*[contains(text(),'" + employeeName + "')]");
 
-    }
-    public boolean isPersonalDetailsPageDisplayed() {
+		return wait.waitForElement(employee).isDisplayed();
 
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
+	}
 
-        return wait.until(ExpectedConditions.urlContains("viewPersonalDetails"));
+	public boolean isPersonalDetailsPageDisplayed() {
 
-    }
-    public void addEmployee(String firstName, String lastName) {
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(15));
 
-        clickPIM();
+		return wait.until(ExpectedConditions.urlContains("viewPersonalDetails"));
 
-        clickAdd();
+	}
 
-        enterFirstName(firstName);
+	public void addEmployee(String firstName, String lastName) {
 
-        enterLastName(lastName);
+		clickPIM();
 
-        clickSave();
+		clickAdd();
 
-        wait.waitForLoaderToDisappear();
-    }
-    
-    public void clickDelete() {
+		enterFirstName(firstName);
 
-        wait.waitForClickable(btnDelete).click();
+		enterLastName(lastName);
 
-    }
+		clickSave();
 
-    public void confirmDelete() {
+		wait.waitForLoaderToDisappear();
+	}
 
-        wait.waitForClickable(btnYesDelete).click();
+	public void clickDelete() {
 
-    }
-    public boolean isNoRecordDisplayed() {
+		wait.waitForClickable(btnDelete).click();
 
-        return wait.waitForElement(noRecordMessage).isDisplayed();
+	}
 
-    }
-    public void deleteEmployee(String employeeName) throws InterruptedException {
-    	clickPIM();
-    	
-        clickEmployeeList();
+	public void confirmDelete() {
 
-        searchEmployee(employeeName);
+		wait.waitForClickable(btnYesDelete).click();
 
-        clickDelete();
+	}
 
-        confirmDelete();
+	public boolean isNoRecordDisplayed() {
 
-    }
-    
-    public void clickEdit() {
+		return wait.waitForElement(noRecordMessage).isDisplayed();
 
-        wait.waitForClickable(btnEdit).click();
+	}
 
-    }
-    public void updateLastName(String lastName) {
+	public void deleteEmployee(String employeeName) throws InterruptedException {
+		clickPIM();
 
-        wait.waitForElement(txtLastName).clear();
+		clickEmployeeList();
 
-        wait.waitForElement(txtLastName).sendKeys(lastName);
+		searchEmployee(employeeName);
 
-    }
-    public boolean isUpdateSuccessful() {
+		clickDelete();
 
-        return wait.waitForElement(successToast).isDisplayed();
+		confirmDelete();
 
-    }
-    public void updateEmployee(String employeeName, String newLastName) throws InterruptedException {
+	}
 
-        clickPIM();
+	public void clickEdit() {
 
-        clickEmployeeList();
+		wait.waitForClickable(btnEdit).click();
 
-        searchEmployee(employeeName);
+	}
 
-        clickEdit();
+	public void updateLastName(String lastName) {
 
-        updateLastName(newLastName);
+		wait.waitForElement(txtLastName).clear();
 
-        clickSave();
+		wait.waitForElement(txtLastName).sendKeys(lastName);
 
-    }
+	}
+
+	public boolean isUpdateSuccessful() {
+
+		return wait.waitForElement(successToast).isDisplayed();
+
+	}
+
+	public void updateEmployee(String employeeName, String newLastName) throws InterruptedException {
+
+		clickPIM();
+
+		clickEmployeeList();
+
+		searchEmployee(employeeName);
+
+		clickEdit();
+
+		updateLastName(newLastName);
+
+		clickSave();
+
+	}
 
 }
