@@ -35,14 +35,43 @@ public class PIMTest extends BaseTest {
 
 	    LoginPage loginPage = new LoginPage(driver);
 	    PIMPage pimPage = new PIMPage(driver);
+	    String firstName = "Darsh" + System.currentTimeMillis();
+	    String lastName = "QA";
 
 	    loginPage.login("Admin", "admin123");
 
-	    pimPage.deleteEmployee("TestDelete");
-	    
-	    pimPage.searchEmployee("TestDelete");
+	    pimPage.addEmployee(firstName, lastName);
+	    Thread.sleep(3000);
+	    pimPage.clickEmployeeList();
+	    pimPage.searchEmployee(firstName);
+
+	    pimPage.deleteEmployee(firstName);
 
 	    assertTrue(pimPage.isNoRecordDisplayed());
 
+	}
+	
+	@Test
+	public void verifyUpdateEmployee() throws InterruptedException {
+
+	    LoginPage loginPage = new LoginPage(driver);
+	    PIMPage pimPage = new PIMPage(driver);
+	    String firstName = "Darsh" + System.currentTimeMillis();
+	    String lastName = "QA";
+
+	    loginPage.login("Admin", "admin123");
+
+	    pimPage.addEmployee(firstName, lastName);
+	    Thread.sleep(3000);
+	    pimPage.clickEmployeeList();
+	    pimPage.searchEmployee(firstName);
+
+	    pimPage.clickEdit();
+
+	    pimPage.updateLastName("Automation");
+
+	    pimPage.clickSave();
+
+	    assertTrue(pimPage.isUpdateSuccessful());
 	}
 }

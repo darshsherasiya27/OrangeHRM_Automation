@@ -46,6 +46,10 @@ public class PIMPage {
     
     By noRecordMessage = By.xpath("//span[normalize-space()='No Records Found']");
     
+ // Edit Button
+    By btnEdit = By.xpath("//i[contains(@class,'bi-pencil-fill')]/parent::button");
+
+    By successToast = By.xpath("//p[text()='Successfully Updated']");
     
     public PIMPage(WebDriver driver) {
         this.driver = driver;
@@ -171,6 +175,39 @@ public class PIMPage {
         clickDelete();
 
         confirmDelete();
+
+    }
+    
+    public void clickEdit() {
+
+        wait.waitForClickable(btnEdit).click();
+
+    }
+    public void updateLastName(String lastName) {
+
+        wait.waitForElement(txtLastName).clear();
+
+        wait.waitForElement(txtLastName).sendKeys(lastName);
+
+    }
+    public boolean isUpdateSuccessful() {
+
+        return wait.waitForElement(successToast).isDisplayed();
+
+    }
+    public void updateEmployee(String employeeName, String newLastName) throws InterruptedException {
+
+        clickPIM();
+
+        clickEmployeeList();
+
+        searchEmployee(employeeName);
+
+        clickEdit();
+
+        updateLastName(newLastName);
+
+        clickSave();
 
     }
 
